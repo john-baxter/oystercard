@@ -8,3 +8,11 @@ This part is fairly familliar now so I have done it with minimal trouble/assista
 Done
 
 ### Step 2
+Create GemFile &c
+
+run "gem list"
+check if 'bundler' is there
+run bundle init - creates empty gemfile ready for me to add info to.
+ - added info as per Kate's research (while I was away) should research this a little myself.
+ run "bundle"
+ - adds gemfile.lock to project dir.
