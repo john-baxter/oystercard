@@ -6,7 +6,7 @@ describe Oystercard do
   end
 
   it "has balance" do 
-    expect(@mycard.view_balance).to be (@mycard.balance)
+    expect(@mycard.balance).to be (0.00)
   end
 
 end
