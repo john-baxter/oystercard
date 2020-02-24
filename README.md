@@ -44,3 +44,18 @@ complete; can now see money on card. (at the moment it's only £0.00)
 -refactored.
 
 ### Step 5
+#### User story
+```
+In order to keep using public transport
+As a customer
+I want to add money to my card
+```
+
+Complete, can now add money to the card.
+
+Instance variables:
+are spefic to an instance of a class. johns_card has a variable @balance and kates_card also has a variable @balance but they can be different values; theyre still refered to as '@balance'
+we would be able to read the instance variable from from outside the instance they belong to by using attr_reader (look up getter methods and setter methods for more info)
+
+Further updates\
+added extra test in line with the 'hint' in the project information.
