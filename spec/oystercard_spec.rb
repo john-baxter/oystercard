@@ -17,8 +17,12 @@ describe Oystercard do
   end
 
   it "adds value to balance" do
-    @mycard.top_up(100.00)
-    expect(@mycard.balance).to eq (100.00)
+    @mycard.top_up(80.00)
+    expect(@mycard.balance).to eq (80.00)
+  end
+
+  it "raises an error if top up brings balance over £90" do
+    expect{ @mycard.top_up(95.00) }.to raise_error(@limit_error)
   end
 
 end
