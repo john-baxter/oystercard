@@ -29,3 +29,9 @@ run code to pass this test
 attr_reader :variable (list any extra variables after, by comma)\
 this makes a 'window' in the object that allows other objects to see inside and 'read' the value of a/the specified variable. \
 poke around online/google/relish for resources to help with rspec syntax when forming the tests. It's important to have the test run correctly so that we know the 'failure' is to do witht the code failing, not the rspec being written incorrectly. 
+
+#### User story
+In order to use public transport\
+As a customer\
+I want money on my card\
+complete; can now see money on card. (at the moment it's only £0.00)
