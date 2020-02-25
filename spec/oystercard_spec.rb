@@ -38,6 +38,18 @@ describe Oystercard do
     end
   end
 
+  describe "#in_journey?" do
+    it "returns 'false' or 'true' depending on current card status" do
+    # assume default status is 'false'??
+    expect(subject).not_to be_in_journey
+    end
+  end
 
+  describe "#touch_in" do
+    it "can touch-in" do
+      subject.touch_in
+      expect(subject).to be_in_journey
+    end
+  end
 
 end

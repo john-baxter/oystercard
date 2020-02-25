@@ -84,3 +84,16 @@ I need my fare deducted from my card
 check 'subject' syntax in rspec - an alternative to creating a .new before/during each test.\
 within a class 'subject' can potentially be used as shorthand for Class.new (refers to the most recently referenced class.)\
 
+The proess to add the new test and method followed a very similar pattern to the top up balance method. \
+had to take care to remember to first create a new card and then add alance to it before the attempt to deduct. \
+take care to separate the testing into 'describe' blocks relevant to each suite of testing (per method) remember to check out the correct syntax for refering to a method inrspec - using the `"#method"` syntax.
+
+### Step 8
+#### User story
+```
+In order to get through the barriers.
+As a customer
+I need to touch in and out.
+```
+
+more investigation into the 'subject' nomenclature. 

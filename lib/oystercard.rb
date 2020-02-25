@@ -7,10 +7,11 @@ class Oystercard
   CARD_MAX = 90.00
   @limit_error = "The limit is £#{CARD_MAX}"
 
-  attr_reader :balance
+  attr_reader :balance, :in_journey_status
 
   def initialize
     @balance = 0.00
+    @in_journey_status = false
   end
 
   def top_up(value)
@@ -20,6 +21,14 @@ class Oystercard
 
   def deduct(fare)
     @balance -= fare
+  end
+
+  def in_journey?
+    @in_journey_status
+  end
+
+  def touch_in
+    @in_journey_status = true
   end
 
 
