@@ -31,6 +31,10 @@ class Oystercard
     @in_journey_status = true
   end
 
+  def touch_out
+    @in_journey_status = false
+  end
+
 
 
 end

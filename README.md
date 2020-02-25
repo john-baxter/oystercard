@@ -97,3 +97,25 @@ I need to touch in and out.
 ```
 
 more investigation into the 'subject' nomenclature. 
+
+it seems like adding variables to the att_reader (and .initialize) means that we can kind of use variables as methods? investigate this. \
+it was hard to separate the creation of in_journey_status as a variable from the defining of .touch_in, try to think/find if there may have been a better approach for this?
+
+still not added .touch_out; will do this next.
+
+getting a warning in IRB:
+```
+warning: already initialized constant
+```
+try to figure this out. it seems to not like the existance of ther constant while rspec does not like the multiple uses of the constant in the various string interpolations.
+
+.touch_out done.
+
+### Step 9
+#### User story
+```
+In order to pay for my journey
+As a customer
+I need to have the minimum amount (£1) for a single journey.
+```
+
