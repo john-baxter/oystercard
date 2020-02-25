@@ -1,6 +1,8 @@
 # README
 ## Oystercard project. 
 
+## Monday 24th Feb working with Kate
+
 ### Step 1
 Setup project directory, create GitHub repo and link project directory/git/github.
 This part is fairly familliar now so I have done it with minimal trouble/assistance although did need Kate to help with "git clone" vs "git remote add origin ...SSH code thing..."
@@ -8,10 +10,10 @@ This part is fairly familliar now so I have done it with minimal trouble/assista
 Done
 
 ### Step 2
-Create GemFile &c
+Create GemFile etc.
 
 run "gem list"
-check if 'bundler' is there
+check if 'bundler' is there\
 run bundle init - creates empty gemfile ready for me to add info to.
  - added info as per Kate's research (while I was away) should research this a little myself.\
 
@@ -30,7 +32,7 @@ run code to pass this test
 ### Step 4
 attr_reader :variable (list any extra variables after, by comma)\
 this makes a 'window' in the object that allows other objects to see inside and 'read' the value of a/the specified variable. \
-poke around online/google/relish for resources to help with rspec syntax when forming the tests. It's important to have the test run correctly so that we know the 'failure' is to do witht the code failing, not the rspec being written incorrectly. 
+poke around online/google/relish for resources to help with rspec syntax when forming the tests. It's important to have the test run correctly so that we know the 'failure' is to do with the code failing, not the rspec being written incorrectly. 
 
 #### User story
 ```
@@ -59,3 +61,26 @@ we would be able to read the instance variable from from outside the instance th
 
 Further updates\
 added extra test in line with the 'hint' in the project information.
+
+### Step 6
+#### User story
+```
+In order to protect my money from theft or loss
+As a customer
+I want a maximum limit (of £90) on my card
+```
+Added the limiting factor into the top_up method. Iincluded it as a constant (aka magic number) and interpolated the constant into the error codes thrown when top up tries to exceed £90.
+
+## Tuesday 25th Feb working with Kuba
+
+### Step 7
+#### User story
+```
+In order to pay for my journey
+As a customer
+I need my fare deducted from my card
+```
+
+check 'subject' syntax in rspec - an alternative to creating a .new before/during each test.\
+within a class 'subject' can potentially be used as shorthand for Class.new (refers to the most recently referenced class.)\
+

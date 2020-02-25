@@ -1,5 +1,6 @@
-# to require
+# to require or load:
 # require '~/Dropbox/makers_projects/makers_week_02/oystercard/lib/oystercard.rb'
+# load '~/Dropbox/makers_projects/makers_week_02/oystercard/lib/oystercard.rb'
 
 class Oystercard
 
@@ -14,8 +15,11 @@ class Oystercard
 
   def top_up(value)
     fail @limit_error if @balance + value > CARD_MAX
-    # fail "#{limit_error}" if @balance + value > CARD_MAX
     @balance += value
+  end
+
+  def deduct(fare)
+    @balance -= fare
   end
 
 

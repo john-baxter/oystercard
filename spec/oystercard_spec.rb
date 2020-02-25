@@ -16,13 +16,28 @@ describe Oystercard do
     expect {@mycard.top_up(50.00)}.to change(@mycard, :balance)
   end
 
-  it "adds value to balance" do
-    @mycard.top_up(80.00)
-    expect(@mycard.balance).to eq (80.00)
+  describe "#top_up" do
+    it "adds value to balance" do
+      @mycard.top_up(80.00)
+      expect(@mycard.balance).to eq (80.00)
+    end
+
+    it "raises an error if top up brings balance over £90" do
+      expect{ @mycard.top_up(95.00) }.to raise_error(@limit_error)
+    end
   end
 
-  it "raises an error if top up brings balance over £90" do
-    expect{ @mycard.top_up(95.00) }.to raise_error(@limit_error)
+  describe "#deduct" do
+    before (:each) do
+      @mycard.top_up(10.00)
+    end
+
+    it "reduces balance by a given amount; 'fare'" do
+      @mycard.deduct(5.50)
+      expect(@mycard.balance).to eq (4.50)
+    end
   end
+
+
 
 end
