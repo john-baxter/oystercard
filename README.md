@@ -15,7 +15,7 @@ Create GemFile etc.
 run "gem list"
 check if 'bundler' is there\
 run bundle init - creates empty gemfile ready for me to add info to.
- - added info as per Kate's research (while I was away) should research this a little myself.\
+ - added info as per Kate's research (while I was away) should research this a little myself.
 
  run "bundle"
  
@@ -107,10 +107,11 @@ getting a warning in IRB:
 ```
 warning: already initialized constant
 ```
-try to figure this out. it seems to not like the existance of ther constant while rspec does not like the multiple uses of the constant in the various string interpolations.
+try to figure this out. it seems to not like the existance of the constant while rspec does not like the multiple uses of the constant in the various string interpolations.
 
 .touch_out done.
 
+## Wednesday 26th Feb working with Karla
 ### Step 9
 #### User story
 ```
@@ -119,4 +120,15 @@ As a customer
 I need to have the minimum amount (£1) for a single journey.
 ```
 
-superficial edit
+look up "instance variable set" in rspec syntax\
+raised error for minimum balance error for touching in with less than £1\
+
+Take care when setting values using instance_variable_set and/or calling methods. need consistency otherwise you will need one hour and/or one Karla to debug.
+
+Difficulty with defining the test in the first instance because we had to think of how to define a failing feature test while the program *was* working while it should not work.
+
+### Step 10
+#### User story
+```
+
+```

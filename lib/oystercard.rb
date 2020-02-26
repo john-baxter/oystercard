@@ -5,7 +5,10 @@
 class Oystercard
 
   CARD_MAX = 90.00
-  @limit_error = "The limit is £#{CARD_MAX}"
+  @max_limit_error = "The limit is £#{CARD_MAX}"
+  
+  CARD_MIN = 1.00
+  @min_limit_error = "The minimum balance to travel is £#{CARD_MIN}"
 
   attr_reader :balance, :in_journey_status
 
@@ -15,7 +18,7 @@ class Oystercard
   end
 
   def top_up(value)
-    fail @limit_error if @balance + value > CARD_MAX
+    fail @max_limit_error if @balance + value > CARD_MAX
     @balance += value
   end
 
@@ -28,6 +31,7 @@ class Oystercard
   end
 
   def touch_in
+    fail @min_limit_error if @balance < CARD_MIN
     @in_journey_status = true
   end
 
