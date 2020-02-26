@@ -1,11 +1,11 @@
 require 'oystercard'
 
-describe Oystercard do 
+describe Oystercard do
   before (:each) do
     @mycard = Oystercard.new
   end
 
-  it "has balance" do 
+  it "has balance" do
     expect(@mycard.balance).to be (0.00)
   end
 
@@ -33,7 +33,8 @@ describe Oystercard do
     end
 
     it "reduces balance by a given amount; 'fare'" do
-      @mycard.deduct(5.50)
+      @mycard.send(:deduct,5.50)
+      #@mycard.deduct(5.50)
       expect(@mycard.balance).to eq (4.50)
     end
   end
@@ -55,7 +56,7 @@ describe Oystercard do
       expect(@mycard).to be_in_journey
     end
 
-    it "raises an error if card has less than one pound at touch in" do 
+    it "raises an error if card has less than one pound at touch in" do
       @mycard.instance_variable_set(:@balance, 0.50)
       expect{ @mycard.touch_in }.to raise_error(@min_limit_error)
     end
@@ -70,6 +71,10 @@ describe Oystercard do
       @mycard.touch_in
       @mycard.touch_out
       expect(@mycard).not_to be_in_journey
+    end
+
+    it "reduces balance by 1.00" do
+      expect {@mycard.touch_out}.to change{@mycard.balance}.by(-1.00)
     end
   end
 

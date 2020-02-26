@@ -6,7 +6,7 @@ class Oystercard
 
   CARD_MAX = 90.00
   @max_limit_error = "The limit is £#{CARD_MAX}"
-  
+
   CARD_MIN = 1.00
   @min_limit_error = "The minimum balance to travel is £#{CARD_MIN}"
 
@@ -22,9 +22,6 @@ class Oystercard
     @balance += value
   end
 
-  def deduct(fare)
-    @balance -= fare
-  end
 
   def in_journey?
     @in_journey_status
@@ -36,9 +33,14 @@ class Oystercard
   end
 
   def touch_out
+    deduct(1.00)
     @in_journey_status = false
   end
 
+  private
+  def deduct(fare)
+    @balance -= fare
+  end
 
 
 end
