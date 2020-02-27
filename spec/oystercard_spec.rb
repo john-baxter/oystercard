@@ -11,6 +11,12 @@ describe Oystercard do
     expect(@mycard.balance).to be (0.00)
   end
 
+  it "has an empty journey array upon initialization" do
+    expect(@mycard).to have_attributes(journey_list: [])
+  end
+
+
+
   it {is_expected.to respond_to(:top_up).with(1).argument }
 
   # experiment with new syntax
@@ -62,7 +68,8 @@ describe Oystercard do
     end
 
     it "knows what station the journey started at" do
-      expect(@mycard.touch_in(station)).to eq station
+      # expect(@mycard.touch_in(station)).to eq station
+      expect(@mycard.touch_in(station)).to eq ({station => nil})
     end
   end
 
@@ -74,14 +81,21 @@ describe Oystercard do
     it "allows to touch out" do
       # station = double(station)
       @mycard.touch_in(station)
-      @mycard.touch_out
+      @mycard.touch_out(station)
       expect(@mycard).not_to be_in_journey
     end
 
     it "reduces balance by 1.00" do
-      expect {@mycard.touch_out}.to change{@mycard.balance}.by(-1.00)
+      expect {@mycard.touch_out(station)}.to change{@mycard.balance}.by(-1.00)
+    end
+
+    it "stores the just-comp[leted journey upon touching out" do
+      @mycard.touch_in(station)
+      @mycard.touch_out(station)
+      expect(@mycard).to have_attributes(journey: {station => station})
     end
   end
+
 
 
 

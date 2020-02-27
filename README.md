@@ -153,3 +153,24 @@ Doubles: defined in rspec not in codebase. it is a copy of an object in the code
 Let: like a double but applies to the entire `describe` block that it is in. it only has value when called.\
 following instructions to remove `@injourney_status` cariable and reconfigure `.in_journey` to  not need it's own variable any more. \
 investigate why it failed when using `unless` but passes when using `if` even though it looks like it should have been the same. 
+
+
+### Step 12
+#### User story
+```
+In order to know where I have been
+As a customer
+I want to see all my previous trips
+```
+
+investigate ```  1) Oystercard has an empty journey array upon initialization
+     Failure/Error: expect(@mycard).to have_attributes(journey_list = [])
+     
+     NoMethodError:
+       undefined method `keys' for []:Array
+     # ./spec/oystercard_spec.rb:15:in `block (2 levels) in <top (required)>'
+```
+from rspec syntax.
+
+rspec doesn't like the hash afterthe eq because it thinks it's a block. any block must be inside (these) and so a hash must also be inside (these)
+
