@@ -32,18 +32,19 @@ class Oystercard
 
   def touch_in(station)
     fail @min_limit_error if @balance < CARD_MIN
+    @journey = {}
     @entry_station = station
-    # @exit_station = nil
     @journey = {@entry_station => nil}
-    # @entry_station
   end
 
   def touch_out(station)
     deduct(1.00)
     @exit_station = station
     @journey[@entry_station] = @exit_station
+    @journey_list << @journey
     @entry_station = nil
-    # @exit_station = nil
+    @exit_station = nil
+    # @journey = {}
   end
 
   private

@@ -163,7 +163,8 @@ As a customer
 I want to see all my previous trips
 ```
 
-investigate ```  1) Oystercard has an empty journey array upon initialization
+investigate
+```  1) Oystercard has an empty journey array upon initialization
      Failure/Error: expect(@mycard).to have_attributes(journey_list = [])
      
      NoMethodError:
@@ -174,3 +175,12 @@ from rspec syntax.
 
 rspec doesn't like the hash afterthe eq because it thinks it's a block. any block must be inside (these) and so a hash must also be inside (these)
 
+### Step 13
+#### User story
+```
+In order to know how far I have travelled
+As a customer
+I want to know what zone a station is in
+```
+not really any notess here I think. it was mainly copying syntax from other tests. got it to work - even though we discovered we had broken a test in the oystercard_spec.\
+lesson is to always check the tests after refactoring, do not assume that they will still work. 
