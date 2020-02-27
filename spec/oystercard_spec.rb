@@ -5,6 +5,8 @@ describe Oystercard do
     @mycard = Oystercard.new
   end
 
+  let (:station) {double :station}
+
   it "has balance" do
     expect(@mycard.balance).to be (0.00)
   end
@@ -34,14 +36,12 @@ describe Oystercard do
 
     it "reduces balance by a given amount; 'fare'" do
       @mycard.send(:deduct,5.50)
-      #@mycard.deduct(5.50)
       expect(@mycard.balance).to eq (4.50)
     end
   end
 
   describe "#in_journey?" do
     it "returns 'false' or 'true' depending on current card status" do
-    # assume default status is 'false'??
     expect(subject).not_to be_in_journey
     end
   end
@@ -52,13 +52,17 @@ describe Oystercard do
     end
 
     it "can touch-in" do
-      @mycard.touch_in
+      @mycard.touch_in(station)
       expect(@mycard).to be_in_journey
     end
 
     it "raises an error if card has less than one pound at touch in" do
       @mycard.instance_variable_set(:@balance, 0.50)
-      expect{ @mycard.touch_in }.to raise_error(@min_limit_error)
+      expect{ @mycard.touch_in(station) }.to raise_error(@min_limit_error)
+    end
+
+    it "knows what station the journey started at" do
+      expect(@mycard.touch_in(station)).to eq station
     end
   end
 
@@ -68,7 +72,8 @@ describe Oystercard do
     end
 
     it "allows to touch out" do
-      @mycard.touch_in
+      # station = double(station)
+      @mycard.touch_in(station)
       @mycard.touch_out
       expect(@mycard).not_to be_in_journey
     end
