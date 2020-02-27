@@ -24,21 +24,21 @@ run bundle init - creates empty gemfile ready for me to add info to.
 Done
 
 ### Step 3
-Create file that has the spec naming convention (in the spec file etc.)
-prepare first rspec test
+Create file that has the spec naming convention (in the spec file etc.)\
+prepare first rspec test\
 run code to pass this test
 #### GREEN
 
 ### Step 4
-attr_reader :variable (list any extra variables after, by comma)\
+`attr_reader :variable` (list any extra variables after, by comma)\
 this makes a 'window' in the object that allows other objects to see inside and 'read' the value of a/the specified variable. \
 poke around online/google/relish for resources to help with rspec syntax when forming the tests. It's important to have the test run correctly so that we know the 'failure' is to do with the code failing, not the rspec being written incorrectly. 
 
 #### User story
 ```
-In order to use public transport\
-As a customer\
-I want money on my card\
+In order to use public transport
+As a customer
+I want money on my card
 ```
 
 complete; can now see money on card. (at the moment it's only £0.00)
@@ -56,11 +56,11 @@ I want to add money to my card
 Complete, can now add money to the card.
 
 Instance variables:
-are spefic to an instance of a class. johns_card has a variable @balance and kates_card also has a variable @balance but they can be different values; theyre still refered to as '@balance'
+Are spefic to an instance of a class. `johns_card` has a variable `@balance` and `kates_card` also has a variable `@balance` but although they can be different values; they're still refered to as '@balance'\
 we would be able to read the instance variable from from outside the instance they belong to by using attr_reader (look up getter methods and setter methods for more info)
 
 Further updates\
-added extra test in line with the 'hint' in the project information.
+Added extra test in line with the 'hint' in the project information.
 
 ### Step 6
 #### User story
@@ -82,7 +82,7 @@ I need my fare deducted from my card
 ```
 
 check 'subject' syntax in rspec - an alternative to creating a .new before/during each test.\
-within a class 'subject' can potentially be used as shorthand for Class.new (refers to the most recently referenced class.)\
+within a class 'subject' can potentially be used as shorthand for Class.new (refers to the most recently referenced class.)
 
 The proess to add the new test and method followed a very similar pattern to the top up balance method. \
 had to take care to remember to first create a new card and then add alance to it before the attempt to deduct. \
@@ -121,7 +121,7 @@ I need to have the minimum amount (£1) for a single journey.
 ```
 
 look up "instance variable set" in rspec syntax\
-raised error for minimum balance error for touching in with less than £1\
+raised error for minimum balance error for touching in with less than £1
 
 Take care when setting values using instance_variable_set and/or calling methods. need consistency otherwise you will need one hour and/or one Karla to debug.
 
@@ -135,8 +135,52 @@ As a customer
 When my journey is complete, I need the correct amount deducted from my card
 ```
 
-This one was driven by Karla. It seemed straightforward to complete. added extera functionality to .touch_out to allow fare to be deducted at end of journey.
+This one was driven by Karla. It seemed straightforward to complete. added extra functionality to `.touch_out` to allow fare to be deducted at end of journey.
 
-learned about `send` which allows us to "invoke" `.privatemethod` without actually 'calling' it. kind of. \
-used new rspec syntax `expect {}.to change{}.by()`.\
+Learned about `send` which allows us to "invoke" `.privatemethod` without actually 'calling' it. kind of. I think. \
+Used new rspec syntax `expect {}.to change{}.by()` as per the advice in the challenge info page.\
 need to remember to be careful about the +ve or -ve nature of the number we are changing by.
+
+## Thursday 27th Feb working with Sophia
+### Step 11
+#### User story
+```
+In order to pay for my journey
+As a customer
+I need to know where I've travelled from
+```
+Doubles: defined in rspec not in codebase. it is a copy of an object in the code that we need to test. they are static - not variables. each attribute gets the value that we gave it when we defined the double but only becomes "real" when we call the double.\
+Let: like a double but applies to the entire `describe` block that it is in. it only has value when called.\
+following instructions to remove `@injourney_status` cariable and reconfigure `.in_journey` to  not need it's own variable any more. \
+investigate why it failed when using `unless` but passes when using `if` even though it looks like it should have been the same. 
+
+
+### Step 12
+#### User story
+```
+In order to know where I have been
+As a customer
+I want to see all my previous trips
+```
+
+investigate
+```  1) Oystercard has an empty journey array upon initialization
+     Failure/Error: expect(@mycard).to have_attributes(journey_list = [])
+     
+     NoMethodError:
+       undefined method `keys' for []:Array
+     # ./spec/oystercard_spec.rb:15:in `block (2 levels) in <top (required)>'
+```
+from rspec syntax.
+
+rspec doesn't like the hash afterthe eq because it thinks it's a block. any block must be inside (these) and so a hash must also be inside (these)
+
+### Step 13
+#### User story
+```
+In order to know how far I have travelled
+As a customer
+I want to know what zone a station is in
+```
+not really any notess here I think. it was mainly copying syntax from other tests. got it to work - even though we discovered we had broken a test in the oystercard_spec.\
+lesson is to always check the tests after refactoring, do not assume that they will still work. 
