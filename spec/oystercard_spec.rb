@@ -1,11 +1,11 @@
 require 'oystercard'
 
-describe Oystercard do 
+describe Oystercard do
   before (:each) do
     @mycard = Oystercard.new
   end
 
-  it "has balance" do 
+  it "has balance" do
     expect(@mycard.balance).to be (0.00)
   end
 
@@ -23,7 +23,7 @@ describe Oystercard do
     end
 
     it "raises an error if top up brings balance over £90" do
-      expect{ @mycard.top_up(95.00) }.to raise_error(@limit_error)
+      expect{ @mycard.top_up(95.00) }.to raise_error(@max_limit_error)
     end
   end
 
@@ -33,7 +33,8 @@ describe Oystercard do
     end
 
     it "reduces balance by a given amount; 'fare'" do
-      @mycard.deduct(5.50)
+      @mycard.send(:deduct,5.50)
+      #@mycard.deduct(5.50)
       expect(@mycard.balance).to eq (4.50)
     end
   end
@@ -46,19 +47,37 @@ describe Oystercard do
   end
 
   describe "#touch_in" do
+    before(:each) do
+      @mycard.instance_variable_set(:@balance, 5.00)
+    end
+
     it "can touch-in" do
-      subject.touch_in
-      expect(subject).to be_in_journey
+      @mycard.touch_in
+      expect(@mycard).to be_in_journey
+    end
+
+    it "raises an error if card has less than one pound at touch in" do
+      @mycard.instance_variable_set(:@balance, 0.50)
+      expect{ @mycard.touch_in }.to raise_error(@min_limit_error)
     end
   end
 
   describe "#touch_out" do
+    before(:each) do
+      @mycard.instance_variable_set(:@balance, 5.00)
+    end
+
     it "allows to touch out" do
-      subject.touch_in
-      subject.touch_out
-      expect(subject).not_to be_in_journey
+      @mycard.touch_in
+      @mycard.touch_out
+      expect(@mycard).not_to be_in_journey
+    end
+
+    it "reduces balance by 1.00" do
+      expect {@mycard.touch_out}.to change{@mycard.balance}.by(-1.00)
     end
   end
+
 
 
 end
